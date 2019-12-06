@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from '../../../axios';
 import Post from '../../../components/Post/Post';
 import './Posts.css'
@@ -21,6 +21,7 @@ class Posts extends Component {
                 }
             })
             this.setState({posts: updatePosts});
+            console.log(posts);
         })
         .catch(error => {
             console.log(error);
