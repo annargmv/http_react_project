@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 // import axios from 'axios';
-import Posts from './Posts/Posts'
+import Posts from './Posts/Posts';
 import NewPost from '../Blog/NewPost/NewPost';
 import './Blog.css';
 
@@ -11,24 +11,34 @@ class Blog extends Component {
         return (
             <div className="Blog">
                 <header>
-                    <nav>
+                    <nav> 
                         <ul>
                             <li>
-                                <Link to="/">Home</Link>
+                                <NavLink 
+                                to="/posts" 
+                                exact 
+                                activeClassName="my-active"
+                                activeStyle={{
+                                    color: 'blue',
+                                    textDecoration: 'underline'
+                                }}>Home</NavLink>
                             </li>
                             <li>
-                                <Link to={{
+                                <NavLink to={{
                                     pathname: '/new-post',
                                     hash: '#submit',
                                     search: '?quick-submit=true'
-                                }}>New Post</Link>
+                                }}>New Post</NavLink>
                             </li>
                         </ul>
                     </nav>
                 </header>
                 {/* <Route path="/" exact render={() => <h1>Home</h1>}/> */}
-                <Route path="/" exact component={Posts}/>
-                <Route path="/new-post" ecact component={NewPost} />
+                <Switch>
+                    <Route path="/new-post" component={NewPost} />
+                    <Route path="/posts" component={Posts}/>
+                    <Redirect from='/' to="posts" />
+                </Switch>
             </div>
         );
     }
