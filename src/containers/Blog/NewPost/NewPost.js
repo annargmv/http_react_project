@@ -27,7 +27,7 @@ class NewPost extends Component {
             .then(response => {
                 console.log(response.data);
                 // this.setState({submitted: true})
-                this.props.history.push('/posts');
+                this.props.history.push('/posts');//allows you to go back in the browser
             })
     } 
 
